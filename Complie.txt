@@ -1,0 +1,3 @@
+! gfortran compile statement with flags for increased speed
+! -fopenmp needed for parallelization with OpenMP
+gfortran Basics.f95 FourierTransforms.f95 ModulatedPulses.f95 SpecialFunctions.f95 delaymodule.f95 Tmatrix.f95 ProbabilityCalculation.f95 IntegratingModPulses.f95 main2.f95 -march=native -fopenmp -O3 -ftree-vectorize -o runpro

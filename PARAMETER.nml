@@ -1,0 +1,58 @@
+! 
+&EMS_SETTINGS
+theta =  0.7853981633974483096156608458, ! final polar angle of measurement (45 degr)
+k0    =  27.11132398604629,  ! centra k-value
+
+! phi_f integral
+Nphi   =   50,
+minPhi = -0.015,
+maxPhi =  0.00,
+
+! k_f integral (depends on pulse simulated)
+Nkpoints = 4000,
+mink = 19.13379,
+maxk = 19.20514,
+multiple = .false., 
+Nint = 3, 
+
+time =  0.0,      ! (time parameter for target evolution t_c)
+
+! Quadrature points internal intergral. Limits are defined in the module IntegratingModPulses.f95
+Nthetai_1 = 250,   ! (quadrature points internal theta integral)
+Nthetai_2 =  75,   ! (quadrature points internal theta integral)
+thetai_1_max = 0.0042, 
+Nphii     =  50,   ! (quadrature points internal phi integral)
+
+! impact parameter
+bx = 0.0, 
+by = 0.0,
+
+!!!!!!!!!      Variables to the projectile pulse       !!!!!!!!
+pulse_type = 'gaussian', ! which pulse the pointer has to point to. (e.g. 'gaussian', 'energyga', 'modulatd') 
+modulated  = .false.,    
+
+!!! Specifications Morimoto, Hommelhoff and Madsen
+!g2 = 0,
+!sigmatrans = 0.13555661993023146,         ! a.u. (5 mrad * k0)
+!sigmalong  = 0.000010560314430208955,     !(100 fs)  ! a.u.
+!sigmatheta = 0.01,
+!omega      = 0.0243055555555555555555,
+
+!!! Modulation frequency equal beat frequency 3py+4py state
+!tp = 622100.2182570932,                   ! bunch time (a.u.) (DEPENDS ON 2|g|!!!)
+!tp should maybe be deleted?
+
+!!! For the modulation frequency used in PRA article
+!dk = 0.002102442508131911,
+!tp = 45246.16117429171,        ! note here 2|g| must be hardcoded in
+
+!!! specifications Shao and Starace
+g2  = 0,
+!tp = 0.0,
+!dk = 0.0,
+omega = 0.0
+sigmatrans = 0.02711132398604629,         ! a.u. (1 mrad * k0)
+sigmalong  = 0.01050490402250473,         ! a.u. (0.1 fs)
+sigmatheta = 0.01,                        ! rad
+
+/
