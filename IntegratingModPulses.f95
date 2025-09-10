@@ -1,5 +1,6 @@
 !
 module IntegrationModPulses
+    ! Module performs integrations over appropriate phi_i and theta_i intervals
     use Basics
     use Tmatrix, only : integrand
     use Parameters, only : k0, omega, dk, Nthetai_1, Nthetai_2
@@ -19,17 +20,17 @@ module IntegrationModPulses
                                 & n, l, m, time, bx, by, symmetry_factor)
         
         ! arguments
-        complex(wp), intent(inout) :: T ! the T-matrix up to constant. What is returned.
+        complex(wp), intent(inout) :: T     ! the T-matrix up to constant. What is returned.
         integer, intent(in) :: Nintervals   ! number of integration intervals over theta. Output from find_integration_limits
         integer, intent(in) :: Nphi         ! number of quadrature points phi integral
         integer, dimension(3), intent(in) :: Nthetas  ! number of quadrature points in each integration interval over theta_i
         real(wp), dimension(Nthetai_1, 3), intent(in) :: theta_points
         real(wp), dimension(Nphi), intent(in) :: phi_points
-        integer, intent(in)  :: n, l, m ! target state
+        integer, intent(in)  :: n, l, m     ! target state
         integer, intent(in)  :: symmetry_factor  ! Whether the spatial wave function is symmetric or not (=1 for symmetric, =-1 for anti symmetric) 
         real(wp), intent(in) :: kn, ka(3), kb(3) 
-        real(wp), intent(in) :: time   ! time in phases coherence
-        real(wp), intent(in) :: bx, by ! impact parameters
+        real(wp), intent(in) :: time        ! time in phases coherence
+        real(wp), intent(in) :: bx, by      ! impact parameters
         
         ! variables
         integer     :: i,j,k  ! for looping
@@ -211,8 +212,6 @@ module IntegrationModPulses
             ! fill the list of k-points
             kfpoints(j*Nkf_in_subinterval + 1 : i*Nkf_in_subinterval) = kpoints_subinterval
         end do
-
-        write(*,*)
 
     end subroutine set_up_kf_integrals
 

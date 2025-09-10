@@ -15,9 +15,12 @@ contains
     ! We hard code the radial fourier transforms for the simple hydrogen states
     ! the integrals can be calculated analytically using Laplace transforms or looked up in B&J appendix A.
     function fourier_hydrogen_orb(q, n, l) result(orbital)
+        ! quantum numbers
         integer, intent(in)  :: n, l
+        ! momentum
         real(wp), intent(in) :: q
 
+        ! probability amplitude
         real(wp) :: orbital
 
 

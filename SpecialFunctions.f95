@@ -1,4 +1,5 @@
 module SpecialFunctions
+! module containing special function such a spherical harmonics and Legendre polynomials 
 use Basics
 implicit none
 private
@@ -27,12 +28,6 @@ contains
         else 
             sph_harmonic = (-1._wp)**abs_m * sqrt_fac * plm * exp(cmplx(0._wp, m*phi, wp))  
         end if
-        
-        !if (isnan(sph_harmonic%re)) then 
-        !    open(1, FILE='data2.dat')
-        !    write(1,*) abs_m, sqrt_fac, plm, gamma(l-m+1._wp), sph_harmonic%re, sph_harmonic%im, phi
-        !    close(1)
-        !end if
 
     end function sph_harm
 
@@ -82,8 +77,8 @@ contains
 
     function py_sph_harm(cos_theta, phi) result(sph_harmonic)
         ! Special for the py states, which is a superposition of m=-1 and the m=1 spherical harmonics
-        real(wp)    :: cos_theta, phi 
-        complex(wp) :: sph_harmonic
+        real(wp)    :: cos_theta, phi ! arguments
+        complex(wp) :: sph_harmonic   ! result
 
 
 

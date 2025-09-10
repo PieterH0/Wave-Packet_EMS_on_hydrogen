@@ -28,7 +28,6 @@ contains
         real(wp), intent(in) :: bx, by                                 ! impact parameter         
         integer, intent(in)  :: N                                      ! Number of states in superposition
         integer, intent(in), dimension(N)  :: ns, ls, ms       ! target state qunatum numbers
-        !integer, intent(in)  :: Ntheta, Nphi                  ! number of quadrature points
         integer, intent(in)  :: symmetry_factor                ! whether symmetric or antisymmetric spatial wave function
 
         
@@ -160,10 +159,8 @@ contains
         
         complex(wp) :: I ! the resulting integrand
 
-        ! pulse factor
-        !psi = gaussian_pulse(kn, theta)        ! single Gaussian
-        !psi = energy_gaussian_pulse(kn, theta) ! single Gaussian in energy
-        psi = pulse_to_use(kn, theta)           ! Modulated pulse
+        ! Evaluating the wave packet. Here the pulse_to_use is the pointer whihc is set in main.f95
+        psi = pulse_to_use(kn, theta)  
 
         ! change in momentum incoming electron
         ! calculated for both outgoing electrons due to symmetrization of fermions.
@@ -188,16 +185,12 @@ contains
         !            and phase from time delay (z-impact parameter)
         I = psi * sin(theta) * radial_of_q * cmplx(delta_factor, 0._wp, wp) * sph_harm_factor &
                     & * exp(cmplx(0._wp, -kn*sin(theta)*(bx*cos(phi) + by*sin(phi)), wp)) !&
-                    !& * exp(cmplx(0._wp, (kn)**2/2._wp*delay_time - kn*cos(theta)*k0*delay_time, wp))  
-                    !& * exp(cmplx(0._wp, (kn*sin(theta))**2/2*delay_time, wp))
-                    !& * exp(cmplx(0._wp, - kn*cos(theta)*k0*delay_time, wp))
-                    
-                    !& * exp(cmplx(0._wp, (kn)**2/2._wp*delay_time - kn*cos(theta)*k0*delay_time, wp))     
-                    !& * exp(cmplx(0._wp, -kn*k0*cos(theta)*(-2._wp*pi*288._wp/7._wp)/4._wp * dble(m), wp))
                     !
                     !& * exp(cmplx(0._wp, (kn*sin(theta))**2/2*delay_time, wp))                        ! transvers delay
                     !& * exp(cmplx(0._wp, (kn)**2/2._wp*delay_time - kn*k0*cos(theta)*delay_time, wp)) ! full delay
-        !
+                    !& * exp(cmplx(0._wp, (kn)**2/2._wp*delay_time, wp))                               ! only temporal delay
+                    !& * exp(cmplx(0._wp, - kn*cos(theta)*k0*delay_time, wp))                          ! only spatial longitudinal delay
+                    !
     end function integrand
 
     function theta_curve(kn, k0) result(theta0)

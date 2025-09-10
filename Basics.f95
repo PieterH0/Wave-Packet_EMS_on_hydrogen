@@ -1,6 +1,6 @@
 module Basics
     !
-    ! This module contains basic definitions ans function to be used in other modules
+    ! This module contains basic definitions and function to be used in other modules
     ! 
     implicit none
     private
@@ -24,8 +24,7 @@ module Basics
 
     
 contains
-    ! Just a standard linspace subroutine, nothing fancy 
-    ! shamelessly stolen from Mads 
+    ! Just a standard linspace subroutine, nothing fancy  
     subroutine linspace(arr, start, end, N)
         integer, intent(in) :: N 
         real(wp), intent(in)  :: start, end 
@@ -40,6 +39,7 @@ contains
         end do 
     end subroutine linspace
 
+    ! For the case where we might divide zero by zero.
     function possible_zero_divided_by_zero(x, y) result(z)
         real(wp), intent(in) :: x, y
         real(wp) :: z
@@ -52,6 +52,7 @@ contains
         end if
     end function possible_zero_divided_by_zero
 
+    ! function to save data vector
     ! again shamelessly stolen. Jesus forgives!
     subroutine save_array(file_name, array, unit)
         character(*), intent(in) :: file_name

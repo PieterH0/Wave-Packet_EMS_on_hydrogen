@@ -1,4 +1,10 @@
+
 module Parameters
+    ! Module ontain the default simulation parameters. Different values should be defined in a
+    ! Parameters.nlm file which is read in the main
+    ! importantly this module is not private
+
+    ! All variables are defined in atomic units (a.u.)
     use basics, only : dp, pi
     implicit none
 
@@ -48,14 +54,15 @@ module Parameters
     real(wp) :: sigmatheta = 0.01_wp                         ! rad
 
     !!! Picking the correct pulse type !!! 
-    ! need an interface containing function of same shape as the one we point to 
+    ! An interface containing function of same shape as the one we point to is needed
     abstract interface
         function some_function(x,y) result(z)
             implicit none
             real(8), intent(in) :: x,y
             complex(8) :: z
         end function some_function
-        ! real(8) is to define with double precision. Somehow cannot get wp inside interface. 
+        ! real(8) is to define with double precision. 
+        ! Somehow cannot get wp inside interface. 
     end interface
 
     ! defining the pointer 
