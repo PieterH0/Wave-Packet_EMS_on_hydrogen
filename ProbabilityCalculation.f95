@@ -65,6 +65,7 @@ module ProbabilityCalculation
         ! Grid over ka and kb
         call linspace(phipoints,  minPhi, maxPhi,   Nphi)
 
+        ! Whether we have multiple seperated kf integral or a single interval
         if (multiple .eqv. .false.) then
             call linspace(kfpoints, mink, maxk, Nkpoints)  ! test for mod.
             !call linspace(kfpoints,    19.16281224699351_wp, 19.176125517950467_wp, Nkpoints) ! works for unmodulated Bojer pulse (see Notebook)
